@@ -1,0 +1,379 @@
+{
+  "last_node_id": 13,
+  "last_link_id": 6,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "pos": [
+        40,
+        0
+      ],
+      "size": [
+        340,
+        440
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            1,
+            3
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            2,
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "front.png",
+        "image"
+      ],
+      "title": "Front reference \u2014 choose your image"
+    },
+    {
+      "id": 10,
+      "type": "NativeHunyuanImagesToMesh",
+      "pos": [
+        440,
+        80
+      ],
+      "size": [
+        340,
+        540
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "front_image",
+          "type": "IMAGE",
+          "link": 1
+        },
+        {
+          "name": "front_mask",
+          "type": "MASK",
+          "link": 2
+        },
+        {
+          "name": "left_image",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "left_mask",
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "name": "back_image",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "back_mask",
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "name": "right_image",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "right_mask",
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mesh",
+          "type": "MESH",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "NativeHunyuanImagesToMesh"
+      },
+      "widgets_values": [
+        "2.1 single-view",
+        "hunyuan_3d_v2.1.safetensors",
+        0,
+        "fixed",
+        30,
+        5.0,
+        4096,
+        256,
+        8000,
+        0.6,
+        "white removes",
+        "unchanged",
+        1.0
+      ]
+    },
+    {
+      "id": 11,
+      "type": "Hunyuan3dv2AddTexture",
+      "pos": [
+        850,
+        80
+      ],
+      "size": [
+        340,
+        540
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mesh",
+          "type": "MESH",
+          "link": 5
+        },
+        {
+          "name": "front_image",
+          "type": "IMAGE",
+          "link": 3
+        },
+        {
+          "name": "front_mask",
+          "type": "MASK",
+          "link": 4
+        },
+        {
+          "name": "roughness_map",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "metallic_map",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "normal_map",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "left_image",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "left_mask",
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "name": "back_image",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "back_mask",
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "name": "right_image",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "right_mask",
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "world_asset",
+          "type": "WORLD_ASSET",
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "textured_glb",
+          "type": "FILE_3D_GLB",
+          "links": []
+        },
+        {
+          "name": "glb_path",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Hunyuan3dv2AddTexture"
+      },
+      "widgets_values": [
+        1024,
+        "white removes",
+        1.0,
+        0.0,
+        "OpenGL (+Y)"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "WorldViewer",
+      "pos": [
+        1270,
+        80
+      ],
+      "size": [
+        480,
+        580
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "asset_1",
+          "type": "WORLD_ASSET",
+          "link": 6
+        },
+        {
+          "name": "asset_2",
+          "type": "WORLD_ASSET",
+          "link": null
+        },
+        {
+          "name": "asset_3",
+          "type": "WORLD_ASSET",
+          "link": null
+        },
+        {
+          "name": "asset_4",
+          "type": "WORLD_ASSET",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "scene",
+          "type": "WORLD_SCENE",
+          "links": []
+        },
+        {
+          "name": "glb_path",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "WorldViewer"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 13,
+      "type": "MarkdownNote",
+      "pos": [
+        -760,
+        0
+      ],
+      "size": [
+        740,
+        610
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Workflow Quick Guide",
+      "properties": {},
+      "widgets_values": [
+        "## Quick guide\n\nLoad a front image to generate a mesh with Hunyuan3D 2.1, then add textures. Open 3D World Interface to arrange the asset and export your scene.\n\nDownload `hunyuan_3d_v2.1.safetensors` from the model resource below and place it in `ComfyUI/models/checkpoints`.\n\nGit clone the 3D World Interface in the `ComfyUI/custom_nodes directory` from the link below.\n\nTexturing requires Linux and an NVIDIA CUDA GPU. Follow the repository README for setup. The first texture run downloads additional models.\n\nURLs are shown as plain text for your security, so you can inspect the full address before opening it.\n\n**Hunyuan nodes and setup**\n```text\nhttps://github.com/defnotkevin/ComfyUI-Hunyuan3d-v2-multiview\n```\n\n**Shape model files**\n```text\nhttps://huggingface.co/Comfy-Org/hunyuan3D_2.1_repackaged\n```\n\n**3D World Interface nodes and setup**\n```text\nhttps://github.com/defnotkevin/ComfyUI-3D-World-Interface\n```"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      10,
+      0,
+      "IMAGE"
+    ],
+    [
+      2,
+      1,
+      1,
+      10,
+      1,
+      "MASK"
+    ],
+    [
+      3,
+      1,
+      0,
+      11,
+      1,
+      "IMAGE"
+    ],
+    [
+      4,
+      1,
+      1,
+      11,
+      2,
+      "MASK"
+    ],
+    [
+      5,
+      10,
+      0,
+      11,
+      0,
+      "MESH"
+    ],
+    [
+      6,
+      11,
+      0,
+      12,
+      0,
+      "WORLD_ASSET"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.65,
+      "offset": [
+        0,
+        0
+      ]
+    }
+  },
+  "version": 0.4
+}

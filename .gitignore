@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+texture_backend.json
+texture_backend.json.tmp
+texture_setup.lock
+texture_setup.log
+.venv/
+
+# Ignore Markdown documentation except the repository README.
+*.md
+!/README.md
